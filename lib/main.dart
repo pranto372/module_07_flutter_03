@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyHomePage(),
     );
   }
@@ -21,7 +21,16 @@ class MyHomePage extends StatelessWidget{
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home"),
+        title: const Text("Home"),
+      ),
+      body: Center(
+        child: FractionallySizedBox(
+          widthFactor: 0.5,
+          heightFactor: 0.3,
+          child: Container(
+            color: Colors.purple,
+          ),
+        ),
       ),
     );
   }
