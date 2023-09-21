@@ -1,47 +1,51 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+void main(){
+  runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget{
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: MyHomePage(),
-    );
+   return const MaterialApp(
+     title: "Counter App",
+     home: MyHomePage(),
+   );
   }
 }
-class MyHomePage extends StatelessWidget{
+
+class MyHomePage extends StatefulWidget{
   const MyHomePage({super.key});
+
+  @override
+  State<StatefulWidget> createState() {
+    return MyHomePageUI();
+  }
+}
+
+class MyHomePageUI extends State<MyHomePage>{
+
+  int CountNumber = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Home"),
+        title: Text("Counter App"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Flexible(
-              fit: FlexFit.tight,
-              flex: 2,
-              child: Container(color: Colors.amber,)
-          ),
-          Flexible(
-              fit: FlexFit.tight,
-              flex: 1,
-              child: Container(color: Colors.blue,)
-          ),
-          Flexible(
-              fit: FlexFit.tight,
-              flex: 3,
-              child: Container(color: Colors.green,)
-          ),
-        ],
+      body: Center(
+        child: Text(CountNumber.toString(), style: TextStyle(fontSize: 30),),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: (){
+          setState(() {
+            CountNumber = CountNumber + 1;
+          });
+        },
       ),
     );
   }
