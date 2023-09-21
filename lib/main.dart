@@ -23,24 +23,22 @@ class MyHomePage extends StatelessWidget{
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            Container(height: 200, width: 200, color: Colors.black,),
-            Container(height: 200, width: 200, color: Colors.blue,),
-            Container(height: 200, width: 200, color: Colors.red,),
-            Container(height: 200, width: 200, color: Colors.green,),
-            Container(height: 200, width: 200, color: Colors.blueGrey,),
-            Container(height: 200, width: 200, color: Colors.redAccent,),
-            Container(height: 200, width: 200, color: Colors.grey,),
-            Container(height: 200, width: 200, color: Colors.amber,),
-            Container(height: 200, width: 200, color: Colors.black,),
-            Container(height: 200, width: 200, color: Colors.blue,),
-            Container(height: 200, width: 200, color: Colors.red,),
-            Container(height: 200, width: 200, color: Colors.green,),
-          ],
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Expanded(
+              flex: 2,
+              child: Container(color: Colors.amber,)
+          ),
+          Expanded(
+              flex: 1,
+              child: Container(color: Colors.blue,)
+          ),
+          Expanded(
+              flex: 3,
+              child: Container(color: Colors.green,)
+          ),
+        ],
       ),
     );
   }
