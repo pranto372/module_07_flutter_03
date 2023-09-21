@@ -1,52 +1,54 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:module_07_flutter_03/style.dart';
 
-void main(){
-  runApp(MyApp());
+void main() {
+  runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget{
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-   return const MaterialApp(
-     title: "Counter App",
-     home: MyHomePage(),
-   );
+    return const MaterialApp(
+      home: MyHomePage(),
+    );
   }
 }
-
-class MyHomePage extends StatefulWidget{
+class MyHomePage extends StatelessWidget{
   const MyHomePage({super.key});
-
-  @override
-  State<StatefulWidget> createState() {
-    return MyHomePageUI();
-  }
-}
-
-class MyHomePageUI extends State<MyHomePage>{
-
-  int CountNumber = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Counter App"),
+        title: const Text("Home"),
       ),
-      body: Center(
-        child: Text(CountNumber.toString(), style: TextStyle(fontSize: 30),),
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: (){
-          setState(() {
-            CountNumber = CountNumber + 1;
-          });
-        },
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text("Media Query", style: Headline(context),)
+        ],
       ),
     );
   }
 }
+
+
+
+/// Media Query(video 1)
+
+// var widht = MediaQuery.of(context).size.width;
+// var height = MediaQuery.of(context).size.height;
+// var orientation = MediaQuery.of(context).orientation;
+
+
+
+// body: Column(
+// mainAxisAlignment: MainAxisAlignment.center,
+// children: [
+// Text("Width Screen = $widht"),
+// Text("Height Screen = $height"),
+// Text("Orientation Screen = $orientation"),
+// ],
+// ),
