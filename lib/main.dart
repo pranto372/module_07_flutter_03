@@ -26,15 +26,18 @@ class MyHomePage extends StatelessWidget{
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          Expanded(
+          Flexible(
+              fit: FlexFit.tight,
               flex: 2,
               child: Container(color: Colors.amber,)
           ),
-          Expanded(
+          Flexible(
+              fit: FlexFit.tight,
               flex: 1,
               child: Container(color: Colors.blue,)
           ),
-          Expanded(
+          Flexible(
+              fit: FlexFit.tight,
               flex: 3,
               child: Container(color: Colors.green,)
           ),
