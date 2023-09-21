@@ -23,14 +23,15 @@ class MyHomePage extends StatelessWidget{
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      body: Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.5,
-          heightFactor: 0.3,
-          child: Container(
-            color: Colors.purple,
-          ),
-        ),
+      body: LayoutBuilder(
+        builder: (BuildContext context, BoxConstraints constraints){
+          if(constraints.maxWidth>600){
+            return Container(height: 400, width: 400,color: Colors.purple,);
+          }
+          else{
+            return Container(height: 100, width: 100,color: Colors.black,);
+          }
+        },
       ),
     );
   }
