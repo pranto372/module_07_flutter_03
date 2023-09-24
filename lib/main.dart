@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:module_07_flutter_03/style.dart';
+import 'package:responsive_grid/responsive_grid.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,31 +25,38 @@ class MyHomePage extends StatelessWidget{
       appBar: AppBar(
         title: const Text("Home"),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
+      body: ResponsiveGridRow(
         children: [
-          Text("Media Query", style: Headline(context),)
+          ResponsiveGridCol(
+            sm: 12, md: 6, lg: 2,
+              child: Container(
+                color: Colors.black,
+                height: 100,
+              )
+          ),
+          ResponsiveGridCol(
+              sm: 12, md: 6, lg: 2,
+              child: Container(
+                color: Colors.blue,
+                height: 100,
+              )
+          ),
+          ResponsiveGridCol(
+              sm: 12, md: 6, lg: 2,
+              child: Container(
+                color: Colors.red,
+                height: 100,
+              )
+          ),
+          ResponsiveGridCol(
+              sm: 12, md: 6, lg: 2,
+              child: Container(
+                color: Colors.amber,
+                height: 100,
+              )
+          ),
         ],
       ),
     );
   }
 }
-
-
-
-/// Media Query(video 1)
-
-// var widht = MediaQuery.of(context).size.width;
-// var height = MediaQuery.of(context).size.height;
-// var orientation = MediaQuery.of(context).orientation;
-
-
-
-// body: Column(
-// mainAxisAlignment: MainAxisAlignment.center,
-// children: [
-// Text("Width Screen = $widht"),
-// Text("Height Screen = $height"),
-// Text("Orientation Screen = $orientation"),
-// ],
-// ),
