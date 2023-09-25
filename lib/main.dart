@@ -1,92 +1,90 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+void main(){
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+          primarySwatch: Colors.amber
       ),
-      home: const MyHomePage(),
+      home: const HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatefulWidget{
+  const HomeScreen({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<StatefulWidget> createState() {
+    return HomeScreenUi();
+  }
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int count = 0;
+class HomeScreenUi extends State<HomeScreen>{
+
+  int CountNumber = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: const Text("Counter App"),
-        ),
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+      appBar: AppBar(
+        title: Text("Counter App"),
+      ),
+      body: Center(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const Text("Count:", style: TextStyle(fontSize: 24)),
-            Text(count.toString(),
-                style:
-                    const TextStyle(fontSize: 45, fontWeight: FontWeight.bold)),
+            Text("Count:", style: TextStyle(fontSize: 26),),
+            Text(CountNumber.toString(),style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),),
             SizedBox(
               height: 10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        setState(() {
-                          count++;
-                        });
-                        if (count >= 5) {
-                          showDialog(
-                              context: context,
-                              builder: (context) => AlertDialog(
-                                    title: Text("Button Pressed $count time"),
-                                    actions: [
-                                      TextButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: const Text("Close")),
-                                    ],
-                                  ));
-                        }
-                      });
-                    },
-                    child: const Icon(Icons.add)),
-                const SizedBox(
-                  width: 10,
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      setState(() {
-                        if (count >= 1) {
-                          count = count - 1;
-                        }
-                      });
-                    },
-                    child: const Icon(Icons.remove)),
-              ],
+            Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(onPressed: (){
+                    setState(() {
+                      CountNumber = CountNumber + 1;
+                      if(CountNumber >= 5){
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: Text(
+                                  "Button Pressed $CountNumber time"
+                              ),
+                              actions: [
+                                TextButton(onPressed: (){
+                                  Navigator.pop(context);
+                                }, child: Text("Close"))
+                              ],
+                            )
+                        );
+                      }
+                    });
+                  }, child: Icon(Icons.add)),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  ElevatedButton(onPressed: (){
+                    setState(() {
+                      CountNumber = CountNumber - 1;
+                    });
+                  }, child: Icon(Icons.remove)),
+                ],
+              ),
             )
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
