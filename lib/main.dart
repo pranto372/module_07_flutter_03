@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:module_07_flutter_03/style.dart';
 
 void main(){
   runApp(MyApp());
@@ -10,8 +11,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "Sum App",
       theme: ThemeData(
-          primarySwatch: Colors.amber
+          primarySwatch: Colors.blue
       ),
       home: const HomeScreen(),
     );
@@ -29,58 +31,62 @@ class HomeScreen extends StatefulWidget{
 
 class HomeScreenUi extends State<HomeScreen>{
 
-  int CountNumber = 0;
+  Map<String, String> FormValue = {"Num1":"", "Num2":"", "Num3":"",};
+  double SUM = 0;
 
   @override
   Widget build(BuildContext context) {
+
+    MyInputonchange(InputKey, InputValue){
+      setState(() {
+        FormValue.update(InputKey, (value) => InputValue);
+      });
+    }
+
+    AddAllNumber(){
+      setState(() {
+        SUM = (FormValue["Num1"]!+FormValue["Num2"]!+FormValue["Num3"]!) as double;
+      });
+    }
+
     return Scaffold(
       appBar: AppBar(
-        title: Text("Counter App"),
+        title: Text("Sum App"),
       ),
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(40),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Text("Count:", style: TextStyle(fontSize: 26),),
-            Text(CountNumber.toString(),style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold),),
+            Text(SUM.toString(), style: Styletext(),),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
-            Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(onPressed: (){
-                    setState(() {
-                      CountNumber = CountNumber + 1;
-                      if(CountNumber >= 5){
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text(
-                                  "Button Pressed $CountNumber time"
-                              ),
-                              actions: [
-                                TextButton(onPressed: (){
-                                  Navigator.pop(context);
-                                }, child: Text("Close"))
-                              ],
-                            )
-                        );
-                      }
-                    });
-                  }, child: Icon(Icons.add)),
-                  SizedBox(
-                    width: 10,
-                  ),
-                  ElevatedButton(onPressed: (){
-                    setState(() {
-                      CountNumber = CountNumber - 1;
-                    });
-                  }, child: Icon(Icons.remove)),
-                ],
-              ),
+            TextFormField(onChanged: (value){
+              MyInputonchange("Num1", value);
+            }, decoration: Style("First Number"),),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(onChanged: (value){
+              MyInputonchange("Num2", value);
+            }, decoration: Style("Second Number"),),
+            SizedBox(
+              height: 20,
+            ),
+            TextFormField(onChanged: (value){
+              MyInputonchange("Num3", value);
+            }, decoration: Style("Third Number"),),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              width: double.infinity,
+                child: ElevatedButton(onPressed: () {
+                  AddAllNumber();
+                },
+                  child: Text("Add"),style: Stylebutton(),
+                )
             )
           ],
         ),
