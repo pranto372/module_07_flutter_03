@@ -37,7 +37,7 @@ class ProductListState extends State<ProductList> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Product List'),
+        title: const Center(child: Text('Product List')),
       ),
       floatingActionButton: FloatingActionButton(
         child: const Icon(Icons.shopping_cart_rounded),
